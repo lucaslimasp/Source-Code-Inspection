@@ -6,15 +6,15 @@ package br.calebe.ticketmachine.core;
  */
 public class PapelMoeda {
 
-    protected int valor;
+    protected Float valor;
     protected int quantidade;
 
-    public PapelMoeda(int valor, int quantidade) {
+    public PapelMoeda(float valor, int quantidade) {
         this.valor = valor;
         this.quantidade = quantidade;
     }
 
-    public int getValor() {
+    public float getValor() {
         return valor;
     }
 

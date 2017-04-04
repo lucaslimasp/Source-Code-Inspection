@@ -10,39 +10,39 @@ import java.util.Iterator;
  */
 public class TicketMachine {
 
-    protected int valor;
-    protected int saldo;
+    protected float precoDoBilhete;
+    protected float saldo;
     protected int[] papelMoeda = {2, 5, 10, 20, 50, 100};
 
-    public TicketMachine(int valor) {
-        this.valor = valor;
+    public TicketMachine(int precoDoBilhete) {
+        this.precoDoBilhete = precoDoBilhete;
         this.saldo = 0;
     }
 
     public void inserir(int quantia) throws PapelMoedaInvalidaException {
         boolean achou = false;
         for (int i = 0; i < papelMoeda.length && !achou; i++) {
-            if (papelMoeda[1] == quantia) {
+            if (papelMoeda[i] == quantia) {
                 achou = true;
             }
         }
         if (!achou) {
-            throw new PapelMoedaInvalidaException();
+            throw new PapelMoedaInvalidaException("Não encontrou valor correto de papel moeda");
         }
         this.saldo += quantia;
     }
 
-    public int getSaldo() {
+    public float getSaldo() {
         return saldo;
     }
 
-    public Iterator<Integer> getTroco() {
-        return null;
+    public float getTroco() {
+        return (saldo - precoDoBilhete);
     }
 
     public String imprimir() throws SaldoInsuficienteException {
-        if (saldo < valor) {
-            throw new SaldoInsuficienteException();
+        if (saldo <precoDoBilhete) {
+            throw new SaldoInsuficienteException("Não possui saldo suficiente");
         }
         String result = "*****************\n";
         result += "*** R$ " + saldo + ",00 ****\n";
